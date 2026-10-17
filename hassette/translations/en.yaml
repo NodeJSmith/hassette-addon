@@ -1,0 +1,14 @@
+configuration:
+  log_level:
+    name: Log level
+    description: >-
+      Overrides the log level in hassette.toml. Leave unset to use hassette.toml,
+      or hassette's default (INFO).
+  python_packages:
+    name: Python packages
+    description: >-
+      Extra packages installed on every start, one requirement per entry
+      (for example "requests" or "httpx>=0.27"). URL and VCS specifiers are
+      not supported; use a uv.lock project instead.
+network:
+  8126/tcp: Direct web UI and API (token login)

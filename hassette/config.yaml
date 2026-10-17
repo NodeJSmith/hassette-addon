@@ -1,0 +1,52 @@
+# Settled by hassette's design/specs/129-ha-addon-v01/design.md (decision numbers in comments).
+name: Hassette
+version: "0.57.0"
+slug: hassette
+description: Async, type-safe Python automations for Home Assistant
+url: https://github.com/NodeJSmith/hassette
+image: ghcr.io/nodejsmith/hassette-addon
+arch:
+  - amd64
+  - aarch64
+
+# D4: the image runs tini; the stop timeout covers hassette's 30 s shutdown budget.
+init: false
+timeout: 45
+
+# D6: Supervisor proxies HA at http://supervisor/core with SUPERVISOR_TOKEN.
+homeassistant_api: true
+
+# D10: the add-on's own config folder is hassette's config home.
+map:
+  - type: app_config
+    read_only: false
+
+# D1: the UI is served through ingress; the direct port stays unmapped until the user sets one.
+ingress: true
+ingress_port: 8126
+panel_icon: mdi:home-automation
+panel_title: Hassette
+ports:
+  8126/tcp: null
+ports_description:
+  8126/tcp: Direct web UI and API (token login)
+
+# D13: lets the glue announce the add-on to the hassette integration.
+discovery:
+  - hassette
+
+# D10: hot backups take a consistent DB snapshot first; the live DB and the uv cache stay out.
+backup_pre: /app/docker/addon/backup_pre.sh
+backup_exclude:
+  - uv_cache
+  - hassette.db
+  - hassette.db-wal
+  - hassette.db-shm
+
+# D9: log_level has no default on purpose, since a default makes an option required.
+options:
+  python_packages: []
+schema:
+  log_level: list(DEBUG|INFO|WARNING|ERROR|CRITICAL)?
+  python_packages:
+    - 'match(^[A-Za-z0-9][A-Za-z0-9._\-\[\],<>=!~ ;*+]*$)'
