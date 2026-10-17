@@ -49,4 +49,4 @@ options:
 schema:
   log_level: list(DEBUG|INFO|WARNING|ERROR|CRITICAL)?
   python_packages:
-    - 'match(^[A-Za-z0-9][A-Za-z0-9._\-\[\],<>=!~ ;]*$)'
+    - 'match(^[A-Za-z0-9][A-Za-z0-9._\-\[\],<>=!~ ;*+]*$)'
