@@ -142,9 +142,13 @@ history back up to the moment of the snapshot. hassette also writes the snapshot
 so a backup taken while the add-on is stopped holds the database as of that stop. The package cache is left
 out of backups; it refills on the next start.
 
-If the snapshot fails, the add-on is left out of that backup, `/config` included, instead of the backup
-carrying an older database. The backup's details page lists Hassette under failed apps, and the add-on's log
-says why. Other apps and Home Assistant are still backed up.
+If the snapshot taken before a backup fails, the add-on is left out of that backup, `/config` included,
+instead of the backup carrying an older database. The backup's details page lists Hassette under failed
+apps, and the add-on's log says why. Other apps and Home Assistant are still backed up.
+
+A stopped add-on gets no snapshot before the backup, so the backup holds whatever snapshot is already there.
+That is the one from the last clean stop. It is older if hassette crashed or was killed instead of stopping
+cleanly, or if writing the snapshot failed when it stopped (the add-on's log records that failure).
 
 ## Support
 
