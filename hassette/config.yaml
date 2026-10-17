@@ -9,9 +9,10 @@ arch:
   - amd64
   - aarch64
 
-# D4: the image runs tini; the stop timeout covers hassette's 30 s shutdown budget.
+# D4: the image runs tini. The stop timeout covers hassette's 30 s shutdown budget plus the database
+# snapshot written at its end (D10), which can't be cancelled once started and is slow on SD cards.
 init: false
-timeout: 45
+timeout: 60
 
 # D6: Supervisor proxies HA at http://supervisor/core with SUPERVISOR_TOKEN.
 homeassistant_api: true
