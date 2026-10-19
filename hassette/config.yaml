@@ -1,6 +1,6 @@
 # Settled by hassette's design/specs/129-ha-addon-v01/design.md (decision numbers in comments).
 name: Hassette
-version: "0.58.0"
+version: "0.59.0"
 slug: hassette
 description: Async, type-safe Python automations for Home Assistant
 url: https://github.com/NodeJSmith/hassette
