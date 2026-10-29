@@ -9,8 +9,9 @@ arch:
   - amd64
   - aarch64
 
-# D4: the image runs tini. The stop timeout covers hassette's 30 s shutdown budget plus the database
-# snapshot written at its end (D10), which can't be cancelled once started and is slow on SD cards.
+# D4: the image runs tini. The stop timeout covers hassette's default 45 s total shutdown budget plus the
+# database snapshot written at its end (D10), which can't be cancelled once started and is slow on SD cards.
+# hassette 0.61+ asks for a stop grace period of at least 60 s.
 init: false
 timeout: 60
 
