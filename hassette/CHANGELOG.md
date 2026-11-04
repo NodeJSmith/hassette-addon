@@ -3,6 +3,10 @@
 Each version matches a [hassette release](https://github.com/NodeJSmith/hassette/releases) of the same
 number. See its release notes for what changed.
 
+## 0.63.0
+
+- [hassette 0.63.0 release notes](https://github.com/NodeJSmith/hassette/releases/tag/v0.63.0)
+
 ## 0.62.0
 
 - [hassette 0.62.0 release notes](https://github.com/NodeJSmith/hassette/releases/tag/v0.62.0)
